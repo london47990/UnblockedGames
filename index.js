@@ -1,6 +1,6 @@
 
 /**
- * PortalGames Vanilla JS Engine
+ * ArcadeBlast! Fun Theme Engine
  */
 
 let allGames = [];
@@ -28,7 +28,6 @@ async function init() {
 
 function handleRoute() {
     const hash = window.location.hash;
-    const content = document.getElementById('app-content');
     
     if (hash.startsWith('#game/')) {
         const gameId = hash.split('/')[1];
@@ -42,43 +41,64 @@ function handleRoute() {
 function renderHomeView() {
     const content = document.getElementById('app-content');
     content.innerHTML = `
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 fade-in">
-            <!-- Hero Section -->
-            <div class="relative rounded-3xl overflow-hidden mb-12 bg-gradient-to-br from-indigo-900 to-indigo-800 h-64 md:h-80 flex items-center px-8 md:px-16 shadow-2xl">
-                <div class="relative z-10 max-w-xl">
-                    <h2 class="text-4xl md:text-6xl font-black text-white leading-none mb-4 tracking-tighter">
-                        PLAY WITHOUT <br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">LIMITS.</span>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Fun Hero Section -->
+            <div class="relative rounded-[3rem] overflow-hidden mb-16 bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-pink-900/40 h-80 md:h-[28rem] flex items-center px-8 md:px-20 border-4 border-white/5 shadow-[0_0_50px_rgba(168,85,247,0.2)]">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                
+                <div class="relative z-10 max-w-2xl">
+                    <div class="inline-block px-4 py-1 bg-pink-500 text-white font-black text-xs rounded-full bungee tracking-widest mb-6">NEW SEASON IS HERE!</div>
+                    <h2 class="text-5xl md:text-8xl font-black text-white leading-[0.9] mb-6 bungee uppercase drop-shadow-[0_5px_15px_rgba(0,0,0,0.5)]">
+                        READY <br /><span class="gradient-text">PLAYER ONE?</span>
                     </h2>
-                    <p class="text-indigo-100 text-lg mb-6">Discover the best unblocked web games. Instant play, no lag, no limits.</p>
-                </div>
-            </div>
-
-            <!-- Toolbar -->
-            <div class="flex flex-col md:flex-row gap-6 mb-10 items-center justify-between">
-                <div class="relative w-full md:w-96">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500"></i>
-                    <input 
-                        id="search-input" 
-                        type="text" 
-                        placeholder="Search for a game..." 
-                        class="w-full bg-slate-800 border border-slate-700 rounded-xl py-3 pl-12 pr-4 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                        value="${searchQuery}"
-                    />
-                </div>
-                <div id="category-filters" class="flex flex-wrap gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
-                    ${['All', 'Action', 'Puzzle', 'Sports', 'Arcade', 'Retro'].map(cat => `
-                        <button 
-                            data-cat="${cat}"
-                            class="cat-btn px-5 py-2 rounded-lg font-semibold text-sm transition-all whitespace-nowrap ${activeCategory === cat ? 'bg-indigo-600 text-white shadow-lg' : 'bg-slate-800 text-slate-400 hover:bg-slate-700'}"
-                        >
-                            ${cat}
+                    <p class="text-blue-100 text-xl md:text-2xl font-medium mb-8 max-w-lg opacity-80">Unlock the ultimate arcade experience. No blocks, no boredom, just pure hype!</p>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="window.location.hash='#game/drift-boss'" class="bg-white text-purple-900 px-10 py-4 rounded-[2rem] font-black text-lg shadow-[0_10px_0_#cbd5e1] hover:shadow-none hover:translate-y-1 transition-all flex items-center gap-3 bungee">
+                            <i class="fa-solid fa-fire text-orange-500"></i> PLAY NOW
                         </button>
-                    `).join('')}
+                    </div>
+                </div>
+
+                <!-- Floating Mascot/Illustration -->
+                <div class="hidden lg:block absolute right-20 top-1/2 -translate-y-1/2 floating">
+                    <div class="relative w-80 h-80">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-pink-500 to-purple-500 rounded-full blur-3xl opacity-30 animate-pulse"></div>
+                        <div class="relative z-10 w-full h-full flex items-center justify-center">
+                             <i class="fa-solid fa-ghost text-[12rem] text-white/90 drop-shadow-[0_20px_40px_rgba(255,255,255,0.2)]"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Grid -->
-            <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Fun Filter Bar -->
+            <div class="flex flex-col gap-10 mb-16">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="relative w-full md:w-[32rem] group">
+                        <i class="fa-solid fa-search absolute left-6 top-1/2 -translate-y-1/2 text-purple-400 group-focus-within:text-pink-400 transition-colors"></i>
+                        <input 
+                            id="search-input" 
+                            type="text" 
+                            placeholder="FIND YOUR NEXT OBSESSION..." 
+                            class="w-full bg-white/5 border-2 border-purple-500/20 rounded-full py-5 pl-16 pr-8 text-white font-bold placeholder:text-purple-300/30 focus:outline-none focus:border-pink-500/50 focus:bg-white/10 transition-all text-lg tracking-wider"
+                            value="${searchQuery}"
+                        />
+                    </div>
+                    
+                    <div id="category-filters" class="flex flex-wrap justify-center gap-3 w-full md:w-auto">
+                        ${['All', 'Action', 'Puzzle', 'Sports', 'Arcade', 'Retro'].map(cat => `
+                            <button 
+                                data-cat="${cat}"
+                                class="cat-btn px-8 py-3 rounded-full font-black text-xs transition-all tracking-tighter bungee ${activeCategory === cat ? 'bg-pink-500 text-white shadow-[0_5px_0_#be185d]' : 'bg-white/5 text-purple-300 hover:bg-white/10'}"
+                            >
+                                ${cat}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Games Grid -->
+            <div id="games-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Cards injected via updateGrid -->
             </div>
         </div>
@@ -93,7 +113,7 @@ function renderHomeView() {
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.onclick = () => {
             activeCategory = btn.dataset.cat;
-            renderHomeView(); // Re-render for active state update
+            renderHomeView();
         };
     });
 
@@ -109,25 +129,36 @@ function updateGrid() {
     });
 
     if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-500">No games found. Check back later!</div>`;
+        grid.innerHTML = `
+            <div class="col-span-full py-32 text-center">
+                <i class="fa-solid fa-robot text-7xl text-purple-500/20 mb-6 block"></i>
+                <h3 class="text-3xl font-black text-white/40 bungee">GAME OVER! NO MATCHES FOUND.</h3>
+            </div>
+        `;
         return;
     }
 
     grid.innerHTML = filtered.map(game => `
-        <div onclick="window.location.hash='#game/${game.id}'" class="game-card group bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-slate-700 transition-all hover:scale-[1.03] hover:border-indigo-500 cursor-pointer">
-            <div class="relative aspect-video overflow-hidden">
-                <img src="${game.thumbnail}" alt="${game.title}" class="card-image w-full h-full object-cover transition-transform duration-500" />
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
-                <div class="absolute bottom-2 left-2 flex gap-2">
-                    <span class="bg-indigo-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">${game.category}</span>
-                    <span class="bg-amber-500 text-slate-900 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
-                        <i class="fa-solid fa-star text-[8px]"></i> ${game.rating}
-                    </span>
+        <div onclick="window.location.hash='#game/${game.id}'" class="card-pop group bg-white/5 rounded-[2.5rem] overflow-hidden border-2 border-white/5 hover:border-pink-500/50 transition-all cursor-pointer shadow-xl">
+            <div class="relative aspect-[4/3] overflow-hidden">
+                <img src="${game.thumbnail}" alt="${game.title}" class="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                
+                <div class="absolute top-4 right-4 flex items-center justify-center w-12 h-12 rounded-full bg-black/60 backdrop-blur-md border border-white/20">
+                    <span class="text-amber-400 font-black text-xs bungee">${game.rating}</span>
+                </div>
+
+                <div class="absolute bottom-4 left-6">
+                    <span class="bg-purple-600 text-white text-[10px] font-black px-4 py-1 rounded-full bungee tracking-widest uppercase">${game.category}</span>
                 </div>
             </div>
-            <div class="p-4">
-                <h3 class="font-bold text-lg text-slate-100 group-hover:text-indigo-400 transition-colors truncate">${game.title}</h3>
-                <p class="text-slate-400 text-sm mt-1 line-clamp-2 h-10">${game.description}</p>
+            <div class="p-8">
+                <h3 class="font-black text-xl text-white group-hover:text-pink-400 transition-colors truncate uppercase tracking-tight">${game.title}</h3>
+                <p class="text-slate-400 text-sm mt-3 line-clamp-2 leading-relaxed font-medium">${game.description}</p>
+                <div class="mt-6 pt-6 border-t border-white/5 flex items-center justify-between">
+                    <span class="text-white/30 text-[10px] font-black bungee">FREE TO PLAY</span>
+                    <i class="fa-solid fa-circle-play text-2xl text-white/10 group-hover:text-pink-500 transition-colors"></i>
+                </div>
             </div>
         </div>
     `).join('');
@@ -136,40 +167,42 @@ function updateGrid() {
 function renderGameView(gameId) {
     const game = allGames.find(g => g.id === gameId);
     if (!game) {
-        document.getElementById('app-content').innerHTML = `<div class="p-20 text-center text-white">Game not found</div>`;
+        window.location.hash = '';
         return;
     }
 
     const similar = allGames.filter(g => g.category === game.category && g.id !== game.id).slice(0, 4);
 
     document.getElementById('app-content').innerHTML = `
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 fade-in">
-            <!-- Back & Controls -->
-            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-                <div class="flex items-center gap-4">
-                    <button onclick="window.location.hash=''" class="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 flex items-center justify-center text-slate-300 transition-all active:scale-90">
-                        <i class="fa-solid fa-arrow-left"></i>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <!-- Header -->
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 mb-12">
+                <div class="flex items-center gap-6">
+                    <button onclick="window.location.hash=''" class="w-16 h-16 rounded-[1.5rem] bg-white/5 hover:bg-white/10 flex items-center justify-center text-white transition-all active:scale-90 border-2 border-white/5">
+                        <i class="fa-solid fa-chevron-left text-xl"></i>
                     </button>
                     <div>
-                        <h2 class="text-3xl font-bold text-white tracking-tight">${game.title}</h2>
-                        <div class="flex items-center gap-3 text-sm">
-                            <span class="text-indigo-400 font-bold">${game.category}</span>
-                            <span class="text-slate-500">•</span>
-                            <span class="text-amber-500 font-bold flex items-center gap-1"><i class="fa-solid fa-star"></i> ${game.rating}</span>
+                        <h2 class="text-4xl font-black text-white bungee uppercase tracking-tight">${game.title}</h2>
+                        <div class="flex items-center gap-4 mt-2">
+                            <span class="text-pink-500 font-black text-sm bungee tracking-widest uppercase">${game.category}</span>
+                            <span class="text-white/20">|</span>
+                            <div class="flex items-center gap-2 text-amber-400 font-black text-sm bungee">
+                                <i class="fa-solid fa-star"></i> ${game.rating}
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="flex gap-2">
-                    <button id="fullscreen-btn" class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-lg font-bold flex items-center gap-2 transition-all shadow-lg shadow-indigo-600/20">
-                        <i class="fa-solid fa-expand"></i> Fullscreen
+                <div class="flex gap-4">
+                    <button id="fullscreen-btn" class="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white px-10 py-4 rounded-full font-black text-sm bungee tracking-widest shadow-lg shadow-purple-500/20 active:scale-95 transition-all">
+                        <i class="fa-solid fa-expand mr-2"></i> FULLSCREEN
                     </button>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                <!-- Iframe -->
-                <div class="lg:col-span-3 space-y-6">
-                    <div id="game-container" class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-700">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+                <!-- Game Container -->
+                <div class="lg:col-span-3">
+                    <div id="game-container" class="relative w-full aspect-video bg-black rounded-[3rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border-8 border-white/5">
                         <iframe 
                             src="${game.iframeUrl}" 
                             class="w-full h-full border-none" 
@@ -178,25 +211,58 @@ function renderGameView(gameId) {
                             scrolling="no"
                         ></iframe>
                     </div>
-                    <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
-                        <h3 class="text-xl font-bold text-white mb-4">Description</h3>
-                        <p class="text-slate-400 leading-relaxed">${game.description}</p>
+                    
+                    <div class="mt-12 bg-white/5 rounded-[3rem] p-10 border-2 border-white/5">
+                        <h3 class="text-2xl font-black text-white bungee mb-6 tracking-widest">ABOUT THE GAME</h3>
+                        <p class="text-slate-300 text-lg leading-relaxed font-medium">${game.description}</p>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+                            <div class="p-6 bg-black/40 rounded-[1.5rem] border border-white/5">
+                                <span class="text-purple-400 font-black text-[10px] bungee block mb-2">DIFFICULTY</span>
+                                <span class="text-white font-bold text-lg">PRO MODE</span>
+                            </div>
+                            <div class="p-6 bg-black/40 rounded-[1.5rem] border border-white/5">
+                                <span class="text-cyan-400 font-black text-[10px] bungee block mb-2">STATUS</span>
+                                <span class="text-white font-bold text-lg">ONLINE</span>
+                            </div>
+                            <div class="p-6 bg-black/40 rounded-[1.5rem] border border-white/5">
+                                <span class="text-pink-400 font-black text-[10px] bungee block mb-2">CONTROLS</span>
+                                <span class="text-white font-bold text-lg">KEYBOARD</span>
+                            </div>
+                            <div class="p-6 bg-black/40 rounded-[1.5rem] border border-white/5">
+                                <span class="text-amber-400 font-black text-[10px] bungee block mb-2">REGION</span>
+                                <span class="text-white font-bold text-lg">GLOBAL</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Sidebar -->
-                <div class="lg:col-span-1 space-y-6">
-                    <h3 class="font-bold text-slate-200 uppercase tracking-wider text-sm">Similar Games</h3>
-                    <div class="space-y-4">
-                        ${similar.length > 0 ? similar.map(s => `
-                            <div onclick="window.location.hash='#game/${s.id}'" class="group flex gap-3 bg-slate-800/30 hover:bg-slate-800 p-2 rounded-xl border border-slate-700/30 transition-all cursor-pointer">
-                                <img src="${s.thumbnail}" class="w-16 h-16 rounded-lg object-cover" />
-                                <div class="flex flex-col justify-center overflow-hidden">
-                                    <h4 class="text-slate-200 font-bold text-sm truncate group-hover:text-indigo-400">${s.title}</h4>
-                                    <span class="text-slate-500 text-[10px]">${s.category}</span>
+                <div class="lg:col-span-1 space-y-10">
+                    <div>
+                        <h3 class="text-lg font-black text-white/40 bungee mb-8 tracking-widest uppercase">YOU MIGHT LIKE</h3>
+                        <div class="space-y-6">
+                            ${similar.length > 0 ? similar.map(s => `
+                                <div onclick="window.location.hash='#game/${s.id}'" class="group flex gap-5 bg-white/5 hover:bg-white/10 p-4 rounded-[1.5rem] border-2 border-white/5 transition-all cursor-pointer">
+                                    <div class="w-20 h-20 rounded-2xl overflow-hidden shrink-0">
+                                        <img src="${s.thumbnail}" class="w-full h-full object-cover group-hover:scale-110 transition-transform" />
+                                    </div>
+                                    <div class="flex flex-col justify-center overflow-hidden">
+                                        <h4 class="text-white font-black text-sm truncate bungee group-hover:text-pink-400">${s.title}</h4>
+                                        <span class="text-purple-400 text-[10px] font-black bungee uppercase mt-1">${s.category}</span>
+                                    </div>
                                 </div>
-                            </div>
-                        `).join('') : '<p class="text-slate-500 text-sm">No similar games yet.</p>'}
+                            `).join('') : '<p class="text-slate-500 text-sm italic bungee">LOOKING FOR MORE HITS...</p>'}
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-pink-600 to-purple-700 rounded-[2.5rem] p-10 text-white relative overflow-hidden shadow-2xl">
+                        <i class="fa-solid fa-trophy absolute -right-6 -bottom-6 text-[10rem] text-white/10 -rotate-12"></i>
+                        <h4 class="font-black text-2xl bungee mb-4 relative z-10">JOIN PRO!</h4>
+                        <p class="text-white/80 font-bold mb-8 relative z-10">No ads, early access, and exclusive badges!</p>
+                        <button class="bg-white text-pink-600 px-8 py-3 rounded-full font-black text-sm bungee w-full relative z-10 shadow-lg hover:scale-105 transition-transform">
+                            LFG!
+                        </button>
                     </div>
                 </div>
             </div>

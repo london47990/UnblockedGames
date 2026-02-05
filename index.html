@@ -4,31 +4,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PortalGames | Unblocked Arcade</title>
+    <title>ArcadeBlast! | Unblocked Fun</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0f172a;
-            color: #f8fafc;
+            font-family: 'Outfit', sans-serif;
+            background-color: #050507;
+            color: #f0f0f5;
+            overflow-x: hidden;
         }
-        .game-card:hover .card-image {
-            transform: scale(1.1);
+        h1, h2, h3, .bungee {
+            font-family: 'Bungee', cursive;
         }
-        .fade-in {
-            animation: fadeIn 0.4s ease-out;
+        .neon-border {
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.4), 0 0 20px rgba(168, 85, 247, 0.2);
+            border: 2px solid rgba(168, 85, 247, 0.5);
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .neon-border:hover {
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.8), 0 0 30px rgba(168, 85, 247, 0.4);
+            border: 2px solid rgba(168, 85, 247, 1);
         }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .bg-arcade {
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #050507 100%);
+        }
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: twinkle var(--duration) infinite ease-in-out;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #f472b6, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-pop {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card-pop:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
     </style>
 <script type="importmap">
 {
@@ -38,27 +68,32 @@
 }
 </script>
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col bg-arcade">
+    <!-- Star Background -->
+    <div id="stars-container" class="fixed inset-0 pointer-events-none z-0"></div>
+
     <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <nav class="sticky top-0 z-50 bg-black/40 backdrop-blur-xl border-b border-purple-500/30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div id="nav-logo" class="flex items-center gap-2 cursor-pointer group">
-                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg transition-transform group-hover:rotate-12">
-                        <i class="fa-solid fa-gamepad text-xl"></i>
+            <div class="flex items-center justify-between h-20">
+                <div id="nav-logo" class="flex items-center gap-3 cursor-pointer group">
+                    <div class="w-12 h-12 bg-gradient-to-tr from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center text-white shadow-[0_0_20px_rgba(236,72,153,0.5)] transition-transform group-hover:rotate-12 group-active:scale-90">
+                        <i class="fa-solid fa-bolt-lightning text-2xl"></i>
                     </div>
-                    <h1 class="text-2xl font-extrabold tracking-tighter text-white">
-                        PORTAL<span class="text-indigo-500">GAMES</span>
+                    <h1 class="text-2xl tracking-wider text-white">
+                        ARCADE<span class="gradient-text">BLAST!</span>
                     </h1>
                 </div>
-                <div class="hidden md:flex items-center gap-8 text-slate-400 font-medium">
-                    <button class="nav-home hover:text-indigo-400 transition-colors">Games</button>
-                    <button class="hover:text-indigo-400 transition-colors">Top Rated</button>
-                    <button class="hover:text-indigo-400 transition-colors">Community</button>
+                
+                <div class="hidden md:flex items-center gap-6">
+                    <button class="nav-home text-white font-bold hover:text-pink-400 transition-colors">GAMES</button>
+                    <button class="text-white/60 font-bold hover:text-purple-400 transition-colors">QUESTS</button>
+                    <button class="text-white/60 font-bold hover:text-cyan-400 transition-colors">RANKING</button>
                 </div>
+
                 <div class="flex items-center gap-4">
-                    <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-lg font-bold transition-all active:scale-95 shadow-lg shadow-indigo-600/20">
-                        Join Pro
+                    <button class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-6 py-2.5 rounded-2xl font-black text-sm tracking-widest transition-all active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.3)] bungee">
+                        LOGIN
                     </button>
                 </div>
             </div>
@@ -66,40 +101,54 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main id="app-content" class="flex-grow">
+    <main id="app-content" class="flex-grow relative z-10">
         <!-- Content injected via JavaScript -->
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-950 border-t border-slate-800 py-12 px-4 mt-auto">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer class="bg-black/80 border-t border-purple-500/20 py-16 px-4 mt-20 relative z-10">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-center md:text-left">
             <div class="col-span-1 md:col-span-2">
-                <div class="flex items-center gap-2 mb-4">
-                    <i class="fa-solid fa-gamepad text-indigo-500 text-2xl"></i>
-                    <span class="text-xl font-bold text-white uppercase tracking-tight">PortalGames</span>
+                <div class="flex items-center justify-center md:justify-start gap-3 mb-6">
+                    <i class="fa-solid fa-gamepad text-pink-500 text-3xl"></i>
+                    <span class="text-2xl font-bold text-white bungee">ARCADEBLAST!</span>
                 </div>
-                <p class="text-slate-500 max-w-sm">The ultimate unblocked web arcade. Curated for performance and accessibility.</p>
+                <p class="text-slate-400 max-w-sm mx-auto md:mx-0 text-lg">Your portal to the most fun, colorful, and absolutely unblocked games on the web! 🚀</p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Explore</h4>
-                <ul class="space-y-2 text-slate-400 text-sm">
-                    <li><button class="nav-home hover:text-indigo-400">All Games</button></li>
-                    <li><a href="#" class="hover:text-indigo-400">New Releases</a></li>
-                    <li><a href="#" class="hover:text-indigo-400">Random Game</a></li>
+                <h4 class="text-pink-400 bungee mb-6 text-sm tracking-widest">MENU</h4>
+                <ul class="space-y-3 text-slate-300 font-bold">
+                    <li><button class="nav-home hover:text-white transition-colors">EXPLORE</button></li>
+                    <li><a href="#" class="hover:text-white transition-colors">NEW HITS</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">RANDOM</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Connect</h4>
-                <div class="flex gap-4">
-                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-discord"></i></a>
-                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-twitter"></i></a>
-                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-github"></i></a>
+                <h4 class="text-cyan-400 bungee mb-6 text-sm tracking-widest">SOCIALLY</h4>
+                <div class="flex justify-center md:justify-start gap-6">
+                    <a href="#" class="text-slate-400 hover:text-pink-500 text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-cyan-500 text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-purple-500 text-2xl transition-transform hover:scale-125"><i class="fa-brands fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Entry Point -->
     <script type="module" src="index.js"></script>
+    <script>
+        // Star background generator
+        const container = document.getElementById('stars-container');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 3 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.setProperty('--duration', `${Math.random() * 3 + 2}s`);
+            container.appendChild(star);
+        }
+    </script>
 </body>
 </html>
