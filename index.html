@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortalGames | Unblocked Arcade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+        .game-card:hover .card-image {
+            transform: scale(1.1);
+        }
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4"
+  }
+}
+</script>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div id="nav-logo" class="flex items-center gap-2 cursor-pointer group">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-lg transition-transform group-hover:rotate-12">
+                        <i class="fa-solid fa-gamepad text-xl"></i>
+                    </div>
+                    <h1 class="text-2xl font-extrabold tracking-tighter text-white">
+                        PORTAL<span class="text-indigo-500">GAMES</span>
+                    </h1>
+                </div>
+                <div class="hidden md:flex items-center gap-8 text-slate-400 font-medium">
+                    <button class="nav-home hover:text-indigo-400 transition-colors">Games</button>
+                    <button class="hover:text-indigo-400 transition-colors">Top Rated</button>
+                    <button class="hover:text-indigo-400 transition-colors">Community</button>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2 rounded-lg font-bold transition-all active:scale-95 shadow-lg shadow-indigo-600/20">
+                        Join Pro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app-content" class="flex-grow">
+        <!-- Content injected via JavaScript -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 border-t border-slate-800 py-12 px-4 mt-auto">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-gamepad text-indigo-500 text-2xl"></i>
+                    <span class="text-xl font-bold text-white uppercase tracking-tight">PortalGames</span>
+                </div>
+                <p class="text-slate-500 max-w-sm">The ultimate unblocked web arcade. Curated for performance and accessibility.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Explore</h4>
+                <ul class="space-y-2 text-slate-400 text-sm">
+                    <li><button class="nav-home hover:text-indigo-400">All Games</button></li>
+                    <li><a href="#" class="hover:text-indigo-400">New Releases</a></li>
+                    <li><a href="#" class="hover:text-indigo-400">Random Game</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Connect</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#" class="text-slate-400 hover:text-indigo-500 text-xl"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Entry Point -->
+    <script type="module" src="index.js"></script>
+</body>
+</html>
