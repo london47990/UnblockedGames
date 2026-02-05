@@ -50,9 +50,6 @@ function renderHomeView() {
                         PLAY WITHOUT <br /><span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-amber-600">LIMITS.</span>
                     </h2>
                     <p class="text-indigo-100 text-lg mb-6">Discover the best unblocked web games. Instant play, no lag, no limits.</p>
-                    <button onclick="window.location.hash='#game/2048'" class="bg-white text-indigo-900 px-6 py-3 rounded-xl font-bold shadow-lg hover:bg-slate-100 transition-all flex items-center gap-2">
-                        <i class="fa-solid fa-play"></i> Play 2048
-                    </button>
                 </div>
             </div>
 
@@ -112,7 +109,7 @@ function updateGrid() {
     });
 
     if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-500">No games found for "${searchQuery}"</div>`;
+        grid.innerHTML = `<div class="col-span-full py-20 text-center text-slate-500">No games found. Check back later!</div>`;
         return;
     }
 
@@ -173,7 +170,13 @@ function renderGameView(gameId) {
                 <!-- Iframe -->
                 <div class="lg:col-span-3 space-y-6">
                     <div id="game-container" class="relative w-full aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl ring-1 ring-slate-700">
-                        <iframe src="${game.iframeUrl}" class="w-full h-full border-none" allowfullscreen></iframe>
+                        <iframe 
+                            src="${game.iframeUrl}" 
+                            class="w-full h-full border-none" 
+                            allowfullscreen 
+                            allow="autoplay; fullscreen; pointer-lock"
+                            scrolling="no"
+                        ></iframe>
                     </div>
                     <div class="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
                         <h3 class="text-xl font-bold text-white mb-4">Description</h3>
@@ -183,9 +186,9 @@ function renderGameView(gameId) {
 
                 <!-- Sidebar -->
                 <div class="lg:col-span-1 space-y-6">
-                    <h3 class="font-bold text-slate-200 uppercase tracking-wider text-xs">Similar Games</h3>
+                    <h3 class="font-bold text-slate-200 uppercase tracking-wider text-sm">Similar Games</h3>
                     <div class="space-y-4">
-                        ${similar.map(s => `
+                        ${similar.length > 0 ? similar.map(s => `
                             <div onclick="window.location.hash='#game/${s.id}'" class="group flex gap-3 bg-slate-800/30 hover:bg-slate-800 p-2 rounded-xl border border-slate-700/30 transition-all cursor-pointer">
                                 <img src="${s.thumbnail}" class="w-16 h-16 rounded-lg object-cover" />
                                 <div class="flex flex-col justify-center overflow-hidden">
@@ -193,7 +196,7 @@ function renderGameView(gameId) {
                                     <span class="text-slate-500 text-[10px]">${s.category}</span>
                                 </div>
                             </div>
-                        `).join('')}
+                        `).join('') : '<p class="text-slate-500 text-sm">No similar games yet.</p>'}
                     </div>
                 </div>
             </div>
